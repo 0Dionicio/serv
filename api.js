@@ -23,7 +23,7 @@ app.get('/orden/:id',async (req, res) => {
     let connection;
     try {
         connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM guantes WHERE orden = ?', [userId]);
+        const [rows] = await connection.execute('SELECT orden FROM guantes WHERE orden = ?', [userId]);
         
         if (rows.length === 0){
             return res.status(404).json({error: 'usuario no encontrado'});

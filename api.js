@@ -53,7 +53,7 @@ app.get('/orders/:id',async (req, res) => {
             return res.status(404).json({error: 'usuario no encontrado'});
         }
         res.set('Cache-Control', 'no-store');
-        res.json(rows[0]);
+        res.json(rows);
     } catch (error){
         console.error('Error BD:',error);
         res.status(500).json({error: 'Error interno del servidor' });

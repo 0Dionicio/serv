@@ -41,6 +41,30 @@ app.get('/orden/:id',async (req, res) => {
 
 });
 
+app.get('/order/:id',async (req, res) => {
+    const userId = req.params.id;
+
+    let connection;
+    try {
+        connection = await mysql.createConnection(dbConfig);
+        const [rows] = await connection.execute("SELECT * FROM gloves WHERE codigo = ?", [userId]);
+        
+        if (rows.length === 0){
+            return res.status(404).json({error: 'usuario no encontrado'});
+        }
+        res.set('Cache-Control', 'no-store');
+        res.json(rows[0]);
+    } catch (error){
+        console.error('Error BD:',error);
+        res.status(500).json({error: 'Error interno del servidor' });
+    }finally{
+        if (connection){
+            await connection.end();
+        }
+    }
+
+});
+
 app.get('/orders/:id',async (req, res) => {
     const userId = req.params.id;
 

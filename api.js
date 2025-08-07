@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/orden/:id',async (req, res) => {
+app.get('/code/:id',async (req, res) => {
     const userId = req.params.id;
 
     let connection;
@@ -41,7 +41,7 @@ app.get('/orden/:id',async (req, res) => {
 
 });
 
-app.get('/order/:id',async (req, res) => {
+app.get('/code-all/:id',async (req, res) => {
     const userId = req.params.id;
 
     let connection;
@@ -65,7 +65,7 @@ app.get('/order/:id',async (req, res) => {
 
 });
 
-app.get('/orders/:id',async (req, res) => {
+app.get('/id/:id',async (req, res) => {
     const userId = req.params.id;
 
     let connection;

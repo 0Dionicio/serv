@@ -65,13 +65,12 @@ app.get('/code-all/:id',async (req, res) => {
 
 });
 
-app.get('/state/:id',async (req, res) => {
-    const userId = req.params.id;
+app.get('/all',async (req, res) => {
 
     let connection;
     try {
         connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute("SELECT * FROM gloves WHERE estado = ?", [userId]);
+        const [rows] = await connection.execute("SELECT * FROM gloves");
         
         if (rows.length === 0){
             return res.status(404).json({error: 'usuario no encontrado'});
